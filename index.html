@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공학용 계산기</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+
+        .calculator__display {
+            width: 100%;
+            font-size: 24px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            padding: 10px 5px;
+            margin-bottom: 15px;
+            text-align: right;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .calculator__buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calculator__button {
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        .calculator__button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .calculator__button--operator {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .calculator__button--operator:hover {
+            background-color: #45a049;
+        }
+
+        .calculator__button--special {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        .calculator__button--special:hover {
+            background-color: #d32f2f;
+        }
+
+        .calculator__button--equal {
+            grid-column: span 2;
+            background-color: #2196F3;
+            color: #fff;
+        }
+
+        .calculator__button--equal:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="calculator__display" id="display" readonly>
+        <div class="calculator__buttons">
+            <button class="calculator__button calculator__button--special" onclick="clearDisplay()">C</button>
+            <button class="calculator__button" onclick="appendToDisplay('7')">7</button>
+            <button class="calculator__button" onclick="appendToDisplay('8')">8</button>
+            <button class="calculator__button" onclick="appendToDisplay('9')">9</button>
+            <button class="calculator__button calculator__button--operator" onclick="appendToDisplay('/')"><i class="fas fa-divide"></i></button>
+            <button class="calculator__button" onclick="appendToDisplay('4')">4</button>
+            <button class="calculator__button" onclick="appendToDisplay('5')">5</button>
+            <button class="calculator__button" onclick="appendToDisplay('6')">6</button>
+            <button class="calculator__button calculator__button--operator" onclick="appendToDisplay('*')"><i class="fas fa-times"></i></button>
+            <button class="calculator__button" onclick="appendToDisplay('1')">1</button>
+            <button class="calculator__button" onclick="appendToDisplay('2')">2</button>
+            <button class="calculator__button" onclick="appendToDisplay('3')">3</button>
+            <button class="calculator__button calculator__button--operator" onclick="appendToDisplay('-')"><i class="fas fa-minus"></i></button>
+            <button class="calculator__button" onclick="appendToDisplay('0')">0</button>
+            <button class="calculator__button" onclick="appendToDisplay('.')">.</button>
+            <button class="calculator__button calculator__button--equal" onclick="calculate()"><i class="fas fa-equals"></i></button>
+            <button class="calculator__button calculator__button--operator" onclick="appendToDisplay('+')"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
